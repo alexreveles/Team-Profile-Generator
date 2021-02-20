@@ -38,9 +38,13 @@ function addManager() {
       name: "officeNumber",
     },
   ]).then(res => {
+      console.log(res);
       const manager = new Manager(res.managerName, res.managerId, res.managerEmail, res.officeNumber)
       teamArr.push(manager)
-      // call cross road function
+
+    addTeamMembers();
+      // ------------------------------------------ call cross road function ------------------------------------------- //
+      
     
   });
 };
@@ -49,18 +53,89 @@ function addTeamMembers() {
     inquirer.prompt([
         {
             type: 'list',
-            name: 'pizza',
-            message: 'What team of team member would you like to add?',
+            name: 'You_choosen',
+            message: 'What type of team member would you like to add?',
             choices: [
                 'Engineer',
                 'Intern',
-                'Done!'
+                'Team Completed!'
             ]
         }
     ]) .then(res => {
-        const Engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail, res.engineerGithub)
-    })
-}
+        console.log(res);
+
+        if( res.You_choosen === 'Engineer') {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "What is the engineer name?",
+                    name: "engineerName",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the engineer Id?",
+                    name: "engineerId",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the engineer Email address?",
+                    name: "engineerEmail",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the engineer github username?",
+                    name: "Github",
+                  },
+            ])
+            .then(res => {
+                const engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail, res.engineerGithub)
+        teamArr.push(engineer)
+        console.log('You added a Engineer');
+        addTeamMembers();
+            })
+        } else if (res.You_choosen === 'Intern') {
+
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "What is the intern name?",
+                    name: "internName",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the intern Id?",
+                    name: "internId",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the intern Email address?",
+                    name: "internEmail",
+                  },
+                  {
+                    type: "input",
+                    message: "What is the intern school?",
+                    name: "school",
+                  },
+            ])
+            .then(res=> {
+                const intern = new Intern(res.InternName, res.internId, res.internEmail, res.school)
+                teamArr.push(intern)
+                console.log('You added Intern!')
+                addTeamMembers();
+            })
+        } else {
+            console.log('Team Dream Completed!')
+            return 
+            
+        }
+        
+        
+
+    
+
+        
+    });
+};
 
 
 // ------------------------------------------ Array of Q's ------------------------------------------- //
@@ -136,14 +211,23 @@ const teamMembers = {
   ],
 };
 
-// ------------------------------------------ Run the App. ------------------------------------------- //
+// ------------------------------------------ Calling Functions ------------------------------------------- //
+addManager();
 
-function start() {
-  inquirer.prompt(teamMembers).then((answer) => {
-    if (answer.addmember == "yes") {
-      addRole();
-    } else {
-      fs.writeFileSync;
-    }
-  });
-}
+// ------------------------------------------ Function to Create Team. ------------------------------------------- //
+
+
+
+const teamArr = 
+
+fs.writeFile('./index.js', teamArr, err => {
+  if (err) {
+    console.error(err)
+    return
+  }
+  //file written successfully
+})
+
+
+
+
