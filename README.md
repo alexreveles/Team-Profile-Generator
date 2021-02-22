@@ -26,7 +26,7 @@
   If you have any questions regarding about the application, please contact me alexreveles@yahoo.com
 
 ### https://youtu.be/YmET3YOy1hc
-### https://github.com/alexreveles/professional-README-generator/blob/main/README.md
+### https://github.com/alexreveles/Team-Profile-Generator
 ### https://github.com/alexreveles
 
 
