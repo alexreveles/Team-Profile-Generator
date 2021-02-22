@@ -3,14 +3,18 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const render = require("./lib/render");
+
 
 // ------------------------------------------ Dependencies ------------------------------------------- //
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+const render = require('./src/template.js')
+
 // ------------------------------------------ Variables ------------------------------------------- //
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outPutPath = path.join(OUTPUT_DIR, "team.html")
 let teamArr = [];
 
 // ------------------------------------------ Functions ------------------------------------------- //
@@ -118,14 +122,15 @@ function addTeamMembers() {
                   },
             ])
             .then(res=> {
-                const intern = new Intern(res.InternName, res.internId, res.internEmail, res.school)
+                const intern = new Intern(res.internName, res.internId, res.internEmail, res.school)
                 teamArr.push(intern)
                 console.log('You added Intern!')
                 addTeamMembers();
             })
         } else {
-            console.log('Team Dream Completed!')
-            return 
+            console.log('Dream Team Completed!')
+            buildPage();
+            return
             
         }
         
@@ -215,18 +220,14 @@ const teamMembers = {
 addManager();
 
 // ------------------------------------------ Function to Create Team. ------------------------------------------- //
-
-
-
-const teamArr = 
-
-fs.writeFile('./index.js', teamArr, err => {
-  if (err) {
-    console.error(err)
-    return
-  }
-  //file written successfully
-})
+function buildPage()
+{
+    // If output directory isn't there then it will build one.
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outPutPath, render(teamArr), 'utf-8');
+}    
 
 
 
