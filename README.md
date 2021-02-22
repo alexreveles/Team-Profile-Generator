@@ -30,4 +30,4 @@
 ### https://github.com/alexreveles
 
 
-![](./assets/images/portfolio-team-generator.png)
+![](./assets/portfolio-team-generator.png)
