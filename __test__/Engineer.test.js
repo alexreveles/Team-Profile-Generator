@@ -4,12 +4,12 @@ const Engineer = require('../lib/Engineer');
 
 // ------------------------------------------ checks for variables ------------------------------------------- //
 test(' creates an engineer object', () => {
-    const engineer = new Engineer('alexr', '2', 'alex@gmail.com', 'alexreveles' );
+    const engineer = new Engineer('alexr', '2', 'alex@gmail.com' );
 
     expect(engineer.name).toBe('alexr');
     expect(engineer.id).toBe('2');
     expect(engineer.email).toBe('alex@gmail.com');
-    expect(engineer.github).toBe('alexreveles');
+    
 });
 
 
