@@ -92,7 +92,7 @@ function addTeamMembers() {
                   },
             ])
             .then(res => {
-                const engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail, res.engineerGithub)
+                const engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail, res.Github)
         teamArr.push(engineer)
         console.log('You added a Engineer');
         addTeamMembers();
@@ -142,79 +142,6 @@ function addTeamMembers() {
     });
 };
 
-
-// ------------------------------------------ Array of Q's ------------------------------------------- //
-
-const teamMembers = {
-  Manager: [
-    {
-      type: "input",
-      message: "What is the manager name?",
-      name: "managerName",
-    },
-    {
-      type: "input",
-      message: "What is the manger ID?",
-      name: "managerId",
-    },
-    {
-      type: "input",
-      message: "What is the manger Email address?",
-      name: "managerEmail",
-    },
-    {
-      type: "input",
-      message: "What is the manager office number?",
-      name: "officeNumber",
-    },
-  ],
-
-  Engineer: [
-    {
-      type: "input",
-      message: "What is the engineer name?",
-      name: "engineerName",
-    },
-    {
-      type: "input",
-      message: "What is the engineer Id?",
-      name: "engineerId",
-    },
-    {
-      type: "input",
-      message: "What is the engineer Email address?",
-      name: "engineerEmail",
-    },
-    {
-      type: "input",
-      message: "What is the engineer github username?",
-      name: "Github",
-    },
-  ],
-
-  Intern: [
-    {
-      type: "input",
-      message: "What is the intern name?",
-      name: "internName",
-    },
-    {
-      type: "input",
-      message: "What is the intern Id?",
-      name: "internId",
-    },
-    {
-      type: "input",
-      message: "What is the intern Email address?",
-      name: "internEmail",
-    },
-    {
-      type: "input",
-      message: "What is the intern school?",
-      name: "school",
-    },
-  ],
-};
 
 // ------------------------------------------ Calling Functions ------------------------------------------- //
 addManager();
